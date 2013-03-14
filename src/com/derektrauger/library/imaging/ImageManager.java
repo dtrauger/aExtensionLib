@@ -43,6 +43,7 @@ public class ImageManager {
     public interface ImageManagerCallback {
         void onImageLoaded(ImageView imageView);
         void onImageDownloaded(String urlString);
+        void onNullBitmap();
     }
 
     public static class ImageManagerOptions {
@@ -196,7 +197,6 @@ public class ImageManager {
             }
             return;
         }
-
         queueJob(urlString);
     }
 
@@ -252,6 +252,14 @@ public class ImageManager {
         }
 
         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+        
+        if (bitmap == null) {
+        	Log.d(LOG_TAG, "null bitmap");
+        	if (callback != null) {
+                callback.onNullBitmap();
+            }
+        }
+        
         addBitmapToCache(urlString, bitmap);
     }
 
