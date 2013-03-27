@@ -1,4 +1,4 @@
-package com.derektrauger.controls;
+package com.derektrauger.library.controls;
 
 import android.content.Context;
 import android.util.AttributeSet;
