@@ -1,10 +1,13 @@
 package com.derektrauger.library.imaging;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -245,10 +248,25 @@ public class ImageManager {
             Log.e(LOG_TAG, "Failed to download bitmap", e);
         }
 
+        if (url == null) {
+            callback.onNullBitmap();
+            return;
+        }
+
+        HttpURLConnection urlConnection;
         try {
-            inputStream = (InputStream) url.getContent();
+            urlConnection = (HttpURLConnection) url.openConnection();
+//            urlConnection.setChunkedStreamingMode(0);
+            urlConnection.setRequestProperty( "Accept-Encoding", "" );
+            urlConnection.setDoOutput(false);
+            inputStream = new BufferedInputStream(urlConnection.getInputStream());
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Failed to download bitmap", e);
+            Log.e(LOG_TAG, "Failed to download bitmap: " + urlString, e);
+        }
+
+        if (inputStream== null) {
+            callback.onNullBitmap();
+            return;
         }
 
         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
