@@ -111,7 +111,7 @@ public class ImageManager {
         return getBitmapFromDiskCache(urlString);
     }
 
-    private void addBitmapToCache(String key, Bitmap bitmap) {
+    public void addBitmapToCache(String key, Bitmap bitmap) {
         if (getBitmapFromLRUCache(key) == null) {
             memoryCache.put(key, bitmap);
         }
