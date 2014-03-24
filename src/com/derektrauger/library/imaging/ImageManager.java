@@ -261,7 +261,7 @@ public class ImageManager {
             urlConnection.setDoOutput(false);
             inputStream = new BufferedInputStream(urlConnection.getInputStream());
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Failed to download bitmap: " + urlString, e);
+//            Log.e(LOG_TAG, "Failed to download bitmap: " + urlString, e);
         }
 
         if (inputStream== null) {
