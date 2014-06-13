@@ -1,21 +1,5 @@
 package com.derektrauger.library.imaging;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.WeakHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import com.derektrauger.library.Utils;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +10,22 @@ import android.os.Message;
 import android.support.v4.util.LruCache;
 import android.util.Log;
 import android.widget.ImageView;
+
+import com.derektrauger.library.Utils;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Collections;
+import java.util.Map;
+import java.util.WeakHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class ImageManager {
@@ -101,7 +101,7 @@ public class ImageManager {
         }
     }
 
-    private Bitmap getBitmapFromCache(String urlString) {
+    public Bitmap getBitmapFromCache(String urlString) {
         Bitmap bitmap = getBitmapFromLRUCache(urlString);
 
         if (bitmap != null) {
@@ -120,6 +120,15 @@ public class ImageManager {
 
         if (diskCache != null && !diskCache.containsKey(diskCacheKey)) {
             diskCache.put(diskCacheKey, bitmap);
+        }
+    }
+
+    public void clearCache(String urlString) {
+        memoryCache.remove(urlString);
+        if (diskCache == null) return;
+        File cacheFile = new File(diskCache.getCacheFolder(), getDiskCacheKey(urlString));
+        if (cacheFile.isFile()) {
+            cacheFile.delete();
         }
     }
 
