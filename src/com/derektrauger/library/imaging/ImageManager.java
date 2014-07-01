@@ -132,6 +132,13 @@ public class ImageManager {
         }
     }
 
+    public void clearCache() {
+        if (context!=null) {
+            diskCache.clearCache();
+            diskCache = new DiskLruImageCache(context);
+        }
+    }
+
     private Bitmap getBitmapFromLRUCache(String urlString) {
         Bitmap cachedBitmap = memoryCache.get(urlString);
 
