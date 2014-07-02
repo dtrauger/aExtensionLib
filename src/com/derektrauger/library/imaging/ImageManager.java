@@ -126,17 +126,11 @@ public class ImageManager {
     public void clearCache(String urlString) {
         memoryCache.remove(urlString);
         if (diskCache == null) return;
-        File cacheFile = new File(diskCache.getCacheFolder(), getDiskCacheKey(urlString));
+        diskCache.removeImage(getDiskCacheKey(urlString));
+        /*File cacheFile = new File(diskCache.getCacheFolder(), getDiskCacheKey(urlString));
         if (cacheFile.isFile()) {
             cacheFile.delete();
-        }
-    }
-
-    public void clearCache() {
-        if (context!=null) {
-            diskCache.clearCache();
-            diskCache = new DiskLruImageCache(context);
-        }
+        }*/
     }
 
     private Bitmap getBitmapFromLRUCache(String urlString) {

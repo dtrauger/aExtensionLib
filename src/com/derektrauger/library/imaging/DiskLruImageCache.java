@@ -156,7 +156,14 @@ public class DiskLruImageCache {
             e.printStackTrace();
         }
     }
-    
+
+    public void removeImage(String key){
+        try {
+            diskCache.remove(key);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public File getCacheFolder() {
         return diskCache.getDirectory();
     }
