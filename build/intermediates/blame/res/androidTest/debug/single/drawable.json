@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/stav/WindAlert/aExtensionLib/build/intermediates/res/merged/androidTest/debug/drawable/common_signin_btn_icon_dark.xml",
+        "source": "/home/stav/WindAlert/aExtensionLib/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/drawable/common_signin_btn_icon_dark.xml"
+    },
+    {
+        "merged": "/home/stav/WindAlert/aExtensionLib/build/intermediates/res/merged/androidTest/debug/drawable/common_signin_btn_icon_light.xml",
+        "source": "/home/stav/WindAlert/aExtensionLib/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/drawable/common_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "/home/stav/WindAlert/aExtensionLib/build/intermediates/res/merged/androidTest/debug/drawable/common_signin_btn_text_light.xml",
+        "source": "/home/stav/WindAlert/aExtensionLib/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/drawable/common_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/home/stav/WindAlert/aExtensionLib/build/intermediates/res/merged/androidTest/debug/drawable/common_signin_btn_text_dark.xml",
+        "source": "/home/stav/WindAlert/aExtensionLib/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/res/drawable/common_signin_btn_text_dark.xml"
+    }
+]
